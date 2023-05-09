@@ -7,10 +7,12 @@ struct element {
 }typedef elem;
 
 elem* stvori_listu();
+elem* dodaj_na_pocetak(elem* glava, int b);
 void ispis(elem* glava);
 float aritmeticka(elem* glava);
 void dodaj_na_kraj(elem* glava);
 void obrisi_kraj(elem* glava);
+void ubaci(elem* glava, int index, int b);
 
 int main(void) {
 
@@ -23,7 +25,29 @@ int main(void) {
 
     ispis(glava);
 
+    obrisi_kraj(glava);
+    printf("\n");
+    ispis(glava);
+
+    printf("\n");
+    ubaci(glava, 3, 99);
+
+    ispis(glava);
+
+    glava = dodaj_na_pocetak(glava, 50);
+
+    printf("\n");
+    ispis(glava);
     return 0;
+}
+
+elem* dodaj_na_pocetak(elem* glava, int b) {
+    if (glava != NULL) {
+        elem* tmp = (elem*) malloc(sizeof(elem));
+        tmp->x = b;
+        tmp->next = glava;
+        return tmp;
+    }
 }
 
 elem* stvori_listu() {
@@ -113,4 +137,29 @@ void obrisi_kraj(elem* glava) {
 
     otmp->next = NULL;
     free(tmp);
+}
+
+void ubaci(elem* glava, int index, int b) {
+    elem* novi = (elem*) malloc(sizeof(elem));
+    elem* tmp = glava;
+
+    int brojac = 1;
+
+    novi->x = b;
+
+    if (index == 1) {
+        novi->next = glava->next;
+        glava->next = novi;
+    } else {
+        while (tmp->next != NULL) {
+            if (brojac == index) {
+                novi->next = tmp->next;
+                tmp->next = novi;
+                break;
+            } else {
+                tmp = tmp->next;
+                brojac++;
+            }
+        }
+    }
 }
