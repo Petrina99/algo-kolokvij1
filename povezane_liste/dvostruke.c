@@ -43,3 +43,44 @@ void ispis(elem* glava) {
         p = p->next;
     }
 }
+
+void dodaj_na_kraj(elem* glava, int b) {
+    elem* tmp = glava;
+
+    while (tmp->next != NULL) {
+        tmp = tmp->next;
+    }
+
+    elem* tmp2 = (elem*) malloc(sizeof(elem));
+    tmp2->x = b;
+    tmp2->prev = tmp;
+    tmp2->next = NULL;
+    tmp->next = tmp2;
+}
+
+void ubaci(elem* glava, int index, int b) {
+
+    elem* tmp = glava;
+    int brojac = 1;
+
+    if (index == 1) {
+        elem* novi = (elem*) malloc(sizeof(elem));
+        novi->next = glava->next;
+        novi->prev = glava;
+        glava->next = novi;
+    } else {
+        while (tmp->next != NULL) {
+            if (brojac == index) {
+                elem* novi = (elem*) malloc(sizeof(elem));
+                novi->x = b;
+                novi->next = tmp->next;
+                novi->prev = tmp;
+                tmp->next = novi;
+                break;
+            } else {
+                tmp = tmp->next;
+                brojac++;
+            }
+        }
+    }
+}

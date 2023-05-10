@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// O (log N)
 int main(void) {
 
     int polje[] = { 2, 8, 12, 25, 35, 38, 99};

@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// o(n)
 int main(void) {
 
     int p[10], trazeni, i, n, status = 0;

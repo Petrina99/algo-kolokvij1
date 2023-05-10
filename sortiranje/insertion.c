@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// o (n)
 void insertionSort(int p[], int n) {
     int i, tmp, j;
 
